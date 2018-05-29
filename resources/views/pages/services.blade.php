@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{{config('app.name', 'LSAPP')}}</title>
+@extends('layouts.app')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-
-    </head>
-    <body>
-        <h1>Services</h1>
-        <p>This is the services page</p>
-    </body>
-</html>
+@section('content')
+    <h1>Services page</h1>
+    <p>What service do you require?</p>
+@endsection
