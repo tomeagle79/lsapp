@@ -4,6 +4,7 @@
     <head>
         <title>{{config('app.name', 'LSAPP')}}</title>
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
     <body>
         <a href="/">Home</a>
