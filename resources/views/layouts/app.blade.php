@@ -11,6 +11,8 @@
         <a href="/about">About</a>
         <a href="/services">Services</a>
     <!-- this pulls in the content from the relevant page -->
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </body>
 </html>
