@@ -23,6 +23,11 @@ class PagesController extends Controller
 
     public function services()
     {
-        return view('pages.services'); // look in the pages folder within views for the services view
+        $data = array(
+            'title' => 'Services',
+            'services' => ['Web design', 'SEO', 'Web development']
+
+        );
+        return view('pages.services')->with($data); // look in the pages folder within views for the services view
     }
 }
