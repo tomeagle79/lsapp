@@ -8,4 +8,4 @@
         <p><a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>&nbsp;<a class="btn btn-success btn-lg" href="/register">Register</a></p>
       </div>
     </div>
-@endsection
+      @endsection
