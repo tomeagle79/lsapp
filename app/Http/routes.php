@@ -23,10 +23,12 @@ Route::get('/welcome', function () {
 // });
 
 Route::get('/', 'PagesController@index'); // this calls the pages controller class with the index method
-
 Route::get('/about', 'PagesController@about');
-
 Route::get('/services', 'PagesController@services');
+
+// Creates all the routes required for the functions created for handling posts
+// First argument is the resource type (the table in the database), second is the controller name
+Route::resource('posts', 'PostsController');
 
 // Dynamic routing below
 // Route::get('/user/{id}/{name}', function ($id, $name) {
