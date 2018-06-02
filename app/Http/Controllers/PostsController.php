@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -15,9 +15,10 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $title = 'Posts page';
-
-        return view('pages.posts')->with('title', $title);
+        //$posts = Post::all(); // Fetch all data available
+        $posts = Post::orderBy('title', 'desc')->get(); // Order posts by title
+        //return Post::where('title', 'Another bloody post')->get(); // Just get the post with title 'Another bloody post'
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -49,7 +50,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
