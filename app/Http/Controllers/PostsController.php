@@ -32,7 +32,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        echo "Please create a new post";
+        return view('posts.create');
     }
 
     /**
