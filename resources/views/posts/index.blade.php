@@ -11,6 +11,8 @@
                 <p>{{$post->body}}</p>
             </div>
         @endforeach
+        {{-- Output the pagination --}}
+        {{$posts->links()}} 
     @else
         <p>No posts founds</p>
     @endif
