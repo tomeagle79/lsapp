@@ -1,20 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+<p>You have {{ count($posts) }} posts</p>
     <h1>Posts</h1>
-    <p>You have {{count($posts)}} posts</p>
     @if(count($posts) > 0)
         @foreach($posts as $post)
             <div class="well">
-            <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
-            <small>Written on {{$post->created_at}}</small>
-                <p>{{$post->body}}</p>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                      Image will go here
+                        {{-- <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}"> --}}
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
+                        <small>Written on {{$post->created_at}} by me{{--$post->user->name--}}</small>
+                    </div>
+                </div>
             </div>
         @endforeach
-        {{-- Output the pagination --}}
-        {{$posts->links()}} 
+        {{$posts->links()}}
     @else
-        <p>No posts founds</p>
+        <p>No posts found</p>
     @endif
-    <a href="/posts/create" class="btn btn-primary" style="display: block">Create new post</a>
 @endsection

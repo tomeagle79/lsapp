@@ -17,7 +17,7 @@ class PostsController extends Controller
     public function index()
     {
         //$posts = Post::all(); // Fetch all data available
-        $posts = Post::orderBy('created_at', 'desc')->paginate(1); // Show pagination
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10); // Show pagination if above x posts paginate(x) 
         //$posts = Post::orderBy('title', 'desc')->get(); // Order posts by title
         //$posts = Post::orderBy('title', 'desc')->take(1)->get(); // Get the first post
         //return Post::where('title', 'Another bloody post')->get(); // Just get the post with title 'Another bloody post'
