@@ -126,7 +126,10 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        // Build form
         Collective\Html\HtmlServiceProvider::class,
+        // Add ckeditor wysiwyg to textarea
+        Unisharp\Ckeditor\ServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,

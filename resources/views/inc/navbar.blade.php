@@ -31,6 +31,9 @@
           </ul>
         </li> --}}
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/posts/create">Create post</a></li>
+      </ul>
       {{-- <form class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
