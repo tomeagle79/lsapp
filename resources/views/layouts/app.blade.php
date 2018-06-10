@@ -11,6 +11,7 @@
         
     <!-- this pulls in the content from the relevant page -->
         <div class="container">
+            @include('inc.messages')
             @yield('content')
         </div>
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

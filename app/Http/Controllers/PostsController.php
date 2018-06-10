@@ -21,6 +21,7 @@ class PostsController extends Controller
         //$posts = Post::orderBy('title', 'desc')->get(); // Order posts by title
         //$posts = Post::orderBy('title', 'desc')->take(1)->get(); // Get the first post
         //return Post::where('title', 'Another bloody post')->get(); // Just get the post with title 'Another bloody post'
+        // Following uses the DB plugin to do SQL queries
         //$posts = DB::select('SELECT * FROM posts WHERE `id` = 4'); // return the post with id of 4
         return view('posts.index')->with('posts', $posts);
     }
@@ -44,6 +45,19 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'title' => 'required', 
+            'body' => 'required']);
+
+            // Create post
+            $post = new Post;
+            $post->title = $request->input('title');
+            $post->body = $request->input('body');
+            $post->save();
+
+            // redirect the user to the posts page and show confirmation message
+            return redirect('/posts')->with('success', 'Post created');
+
     }
 
     /**

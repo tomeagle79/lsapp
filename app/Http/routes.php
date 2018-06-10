@@ -26,7 +26,7 @@ Route::get('/', 'PagesController@index'); // this calls the pages controller cla
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 
-// Creates all the routes required for the functions created for handling posts
+// Creates all the routes required for the functions created for handling posts, ie create, read, update, destroy (CRUD)
 // First argument is the resource type (the table in the database), second is the controller name
 Route::resource('posts', 'PostsController');
 

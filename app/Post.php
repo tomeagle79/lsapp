@@ -14,8 +14,8 @@ class Post extends Model
     // Timestamps
     public $timestamps = true;
 
+    // Below is a function I created to output a date in readable format
     public static function parseDate($value) {
         return Carbon::parse($value)->format('d/m/Y');
     }
-
 }
