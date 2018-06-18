@@ -5,11 +5,11 @@
     {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' => 'POST']) !!}
     <div class="form-group">
         {{Form::label('title', 'Title')}}
-        {{Form::text('title', '$post->title', ['class' => 'form-control', 'placeholder' => 'Title'])}}
+        {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
     </div>
     <div class="form-group">
         {{Form::label('body', 'Body')}}
-        {{Form::textarea('body', '$post->body', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body'])}}
+        {{Form::textarea('body', $post->body, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body'])}}
     </div>
     <!-- The hidden field here is to 'spoof' a PUT request, as the update method can only be a PUT or patch -->
     {{Form::hidden('_method', 'PUT')}}

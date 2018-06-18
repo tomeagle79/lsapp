@@ -8,4 +8,9 @@
     <small>Written on {{App\Post::parseDate($post->created_at)}}</small>
     <hr>
     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit post</a>
+      {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST']) !!}
+      <!-- The hidden field here is to 'spoof' a PUT request, as the update method can only be a PUT or patch -->
+      {{Form::hidden('_method', 'DELETE')}}
+      {{Form::submit('Delete post', ['class' => 'btn btn-danger'])}}
+      {!! Form::close() !!}
 @endsection
