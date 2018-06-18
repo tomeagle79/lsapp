@@ -17,12 +17,12 @@ class PostsController extends Controller
     public function index()
     {
         //$posts = Post::all(); // Fetch all data available
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10); // Show pagination if above x posts paginate(x) 
         //$posts = Post::orderBy('title', 'desc')->get(); // Order posts by title
         //$posts = Post::orderBy('title', 'desc')->take(1)->get(); // Get the first post
         //return Post::where('title', 'Another bloody post')->get(); // Just get the post with title 'Another bloody post'
         // Following uses the DB plugin to do SQL queries
         //$posts = DB::select('SELECT * FROM posts WHERE `id` = 4'); // return the post with id of 4
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10); // Show pagination if above x posts paginate(x) 
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -44,7 +44,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // This function is called by the action attribute of the posts form, passing in the title and body content
         $this->validate($request, [
             'title' => 'required', 
             'body' => 'required'
@@ -81,7 +81,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit');
     }
 
     /**
