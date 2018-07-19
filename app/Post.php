@@ -18,4 +18,9 @@ class Post extends Model
     public static function parseDate($value) {
         return Carbon::parse($value)->format('d/m/Y');
     }
+    
+    // This is to link a post to a user
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

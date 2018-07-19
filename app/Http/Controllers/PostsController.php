@@ -54,6 +54,8 @@ class PostsController extends Controller
             $post = new Post;
             $post->title = $request->input('title');
             $post->body = $request->input('body');
+            // gets user id from logged in user and adds to post
+            $post->user_id = auth()->user()->id;
             $post->save();
 
             // redirect the user to the posts page and show confirmation message
