@@ -14,10 +14,10 @@ class Post extends Model
     // Timestamps
     public $timestamps = true;
 
-    // Below is a function to output a date in readable format
-    public static function parseDate($value) {
-        return Carbon::parse($value)->format('d/m/Y');
-    }
+    // // Below is a function to output a date in readable format
+    // public static function parseDate($value) {
+    //     return Carbon::parse($value)->format('d/m/Y');
+    // }
     
     // This is to link a post to a user
     public function user(){

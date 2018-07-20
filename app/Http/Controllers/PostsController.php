@@ -9,6 +9,23 @@ use DB; // use SQL queries
 
 class PostsController extends Controller
 {
+    /** 
+     * * Create a new controller instance. 
+     * 
+     * 
+     * 
+     * 
+     * * @return void 
+     * 
+     * */
+    // Prevent unregistered user from creating blogposts
+    
+    public function __construct() 
+    { 
+      // Second argument here is the exceptions to the rule
+      $this->middleware('auth', ['except' => ['index', 'show']]); 
+    }
+
     /**
      * Display a listing of the resource.
      *
