@@ -3,8 +3,9 @@
 
 use Carbon\Carbon;
 
-
-function parseDate($value) 
-{ 
-  return Carbon::parse($value)->format('F j, Y'); 
+if( !function_exists( 'parseDate' ) ){
+  function parseDate($value) 
+  { 
+    return Carbon::parse($value)->format('F j, Y'); 
+  }
 }
