@@ -80,7 +80,7 @@ class PostsController extends Controller
             // Filename to store
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            $path = $request->file('cover_image')->move('public/cover_images', $fileNameToStore); // Laravel 5.3+ uses storeAs
 
         } else {
             $fileNameToStore = 'defaultimage.jpg';
@@ -92,6 +92,7 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         // gets user id from logged in user and adds to post
         $post->user_id = auth()->user()->id;
+        $post->cover_image = $fileNameToStore;
         $post->save();
 
         // redirect the user to the posts page and show confirmation message
