@@ -64,19 +64,38 @@ class PostsController extends Controller
         // This function is called by the action attribute of the posts form, passing in the title and body content
         $this->validate($request, [
             'title' => 'required', 
-            'body' => 'required'
-            ]);
+            'body' => 'required',
+            // below ensures that it's an image format|not required|max image size
+            'cover_image' => 'image|max:1999'
+        ]);
 
-            // Create post
-            $post = new Post;
-            $post->title = $request->input('title');
-            $post->body = $request->input('body');
-            // gets user id from logged in user and adds to post
-            $post->user_id = auth()->user()->id;
-            $post->save();
+        // Handle file upload
+        if ($request->hasFile('cover_image')) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
 
-            // redirect the user to the posts page and show confirmation message
-            return redirect('/posts')->with('success', 'Post created');
+        } else {
+            $fileNameToStore = 'defaultimage.jpg';
+        }
+
+        // Create post
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        // gets user id from logged in user and adds to post
+        $post->user_id = auth()->user()->id;
+        $post->save();
+
+        // redirect the user to the posts page and show confirmation message
+        return redirect('/posts')->with('success', 'Post created');
 
     }
 
@@ -101,6 +120,10 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        // check for correct user
+        if(auth()->user()->id !== $post->user_id ){
+          return redirect('/posts')->with('error', 'Unauthorised access - you cannot edit this post');
+        }
         return view('posts.edit')->with('post', $post);
     }
 
@@ -136,7 +159,13 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
+        $post = Post::find($id); 
+  
+        // check for correct user 
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/posts')->with('error', 'Unauthorised access - you cannot delete this post'); 
+        }
+
         $post->delete();
         return redirect('/posts')->with('success', 'Post deleted');
     }
